@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pössunarhelgi — Gísli Bergur 🍼</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #FFF8F0;
+      --warm-white: #FFFCF8;
+      --peach: #FFD6B5;
+      --peach-dark: #F4A96A;
+      --blue-soft: #C8E6F5;
+      --blue: #5AAFD6;
+      --blue-dark: #3A8CB5;
+      --green-soft: #C8EDD6;
+      --green: #5BBF80;
+      --yellow-soft: #FFF3C2;
+      --yellow: #F5C842;
+      --purple-soft: #E8D8F5;
+      --purple: #9B72CF;
+      --red-soft: #FFD8D8;
+      --red: #E07070;
+      --text: #2D2A26;
+      --text-muted: #7A7068;
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --radius: 20px;
+      --radius-sm: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 0 0 60px;
+    }
+
+    /* HEADER */
+    .hero {
+      background: linear-gradient(135deg, #FFE4C8 0%, #FFF0E0 40%, #C8E6F5 100%);
+      padding: 48px 24px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      background: rgba(90,175,214,0.15);
+    }
+    .hero-icon {
+      font-size: 64px;
+      margin-bottom: 12px;
+      display: block;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+    }
+    .hero h1 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+    .hero .subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* SECTION HEADERS */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 32px 0 14px;
+    }
+    .section-label .icon {
+      font-size: 1.4rem;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-label h2 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    /* CARDS */
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 12px;
+    }
+
+    /* PELA CARD (special) */
+    .pela-card {
+      background: linear-gradient(135deg, #FFE4C8, #FFF0E0);
+      border: 2px solid var(--peach-dark);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow);
+    }
+    .pela-card h3 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: #C05A00;
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .pela-recipe {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .pela-item {
+      background: white;
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .pela-item .amount {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--peach-dark);
+      display: block;
+    }
+    .pela-item .label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .pela-times {
+      background: var(--peach-dark);
+      color: white;
+      border-radius: var(--radius-sm);
+      padding: 10px 16px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+    .pela-note {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: #8A5A30;
+      background: rgba(255,255,255,0.6);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-weight: 600;
+    }
+
+    /* TIME ITEMS */
+    .time-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid #F5EEE6;
+    }
+    .time-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .time-item:first-child { padding-top: 0; }
+    .time-badge {
+      background: var(--cream);
+      border: 2px solid var(--peach);
+      border-radius: 10px;
+      padding: 4px 10px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .time-item .content { flex: 1; }
+    .time-item .content strong {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .time-item .content p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    /* MEAL GRID */
+    .meal-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+    .meal-chip {
+      background: white;
+      border: 2px solid var(--green-soft);
+      border-radius: var(--radius-sm);
+      padding: 10px 6px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .meal-chip .meal-icon { font-size: 1.4rem; display: block; margin-bottom: 4px; }
+    .meal-chip .meal-name { font-size: 0.65rem; font-weight: 700; color: var(--text-muted); line-height: 1.3; }
+
+    /* SLEEP CARD */
+    .sleep-card {
+      background: linear-gradient(135deg, #EAE0F8, #F5F0FF);
+      border: 2px solid var(--purple);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 12px;
+    }
+    .sleep-card h3 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 0.95rem;
+      color: var(--purple);
+      margin-bottom: 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .sleep-row {
+      display: flex;
+      gap: 10px;
+    }
+    .sleep-col {
+      flex: 1;
+      background: white;
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+    }
+    .sleep-col .sleep-time {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 1rem;
+      color: var(--purple);
+      display: block;
+    }
+    .sleep-col p { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; margin-top: 4px; line-height: 1.4; }
+
+    /* NIGHT CARD */
+    .night-card {
+      background: linear-gradient(135deg, #1A1A2E, #2D2A4A);
+      border-radius: var(--radius);
+      padding: 22px;
+      color: white;
+      box-shadow: var(--shadow);
+    }
+    .night-card h3 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 1.05rem;
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
+      color: #C8B8FF;
+    }
+    .night-option {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      margin-bottom: 10px;
+    }
+    .night-option:last-child { margin-bottom: 0; }
+    .night-option .time-range {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.8rem;
+      color: #FFD6A0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .night-option .recipe {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.9);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .night-option .recipe .or {
+      color: rgba(255,255,255,0.4);
+      font-size: 0.75rem;
+      display: block;
+      margin: 4px 0;
+    }
+    .night-note {
+      background: rgba(255,200,100,0.15);
+      border: 1px solid rgba(255,200,100,0.3);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: #FFD6A0;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .night-option.first-try {
+      background: rgba(255,255,255,0.05);
+      border-style: dashed;
+    }
+    .night-option.first-try .recipe { color: rgba(255,255,255,0.6); font-style: italic; }
+
+    /* HIGHLIGHT BOX */
+    .highlight {
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+    }
+    .highlight.warning {
+      background: var(--yellow-soft);
+      border: 1.5px solid var(--yellow);
+      color: #7A5A00;
+    }
+    .highlight.info {
+      background: var(--blue-soft);
+      border: 1.5px solid var(--blue);
+      color: #1A5A80;
+    }
+
+    /* BULLET LIST */
+    .blist { list-style: none; }
+    .blist li {
+      padding: 5px 0 5px 22px;
+      position: relative;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .blist li::before {
+      content: '•';
+      position: absolute;
+      left: 6px;
+      color: var(--peach-dark);
+      font-weight: 900;
+    }
+
+    /* FOOTER */
+    .footer-card {
+      background: linear-gradient(135deg, var(--green-soft), #E0F8E8);
+      border: 2px solid var(--green);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      text-align: center;
+      margin-top: 8px;
+    }
+    .footer-card .footer-emoji { font-size: 2rem; }
+    .footer-card p {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #2A7A4A;
+      margin-top: 8px;
+    }
+
+    /* COLOR CODED SECTIONS */
+    .icon-morning { background: #FFF3C2; }
+    .icon-day { background: #C8E6F5; }
+    .icon-evening { background: #FFD8D8; }
+    .icon-night { background: #E8D8F5; }
+    .icon-meal { background: #C8EDD6; }
+    .icon-pela { background: #FFE4C8; }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.6rem; }
+      .pela-recipe { grid-template-columns: repeat(3, 1fr); }
+      .meal-grid { grid-template-columns: repeat(3, 1fr); }
+      .sleep-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="hero-icon">🍼</span>
+    <h1>Pössunarhelgi</h1>
+    <div class="subtitle">Leiðbeiningar fyrir Gísla Berg — 1 árs gamall strákurinn okkar 💛</div>
+  </div>
+
+  <div class="container">
+
+    <!-- PELA -->
+    <div class="section-label">
+      <div class="icon icon-pela">💊</div>
+      <h2>Pela — Mikilvægar upplýsingar</h2>
+    </div>
+
+    <div class="pela-card">
+      <h3>💊 Uppskrift — einn skammtur</h3>
+      <div class="pela-recipe">
+        <div class="pela-item">
+          <span class="amount">180 ml</span>
+          <span class="label">Vatn</span>
+        </div>
+        <div class="pela-item">
+          <span class="amount">6</span>
+          <span class="label">Skeiðar af mjólk</span>
+        </div>
+        <div class="pela-item" style="grid-column: 1 / -1;">
+          <span class="amount">1</span>
+          <span class="label">Movicol poki</span>
+        </div>
+      </div>
+      <div class="pela-times">🕐 2x á dag — morgun og kvöld</div>
+      <div class="pela-note">📝 Athugaðu hvort hann fékk kvölddosann áður en þið gefið honum morgundosann</div>
+    </div>
+
+    <!-- MORGUNRÚTÍNA -->
+    <div class="section-label">
+      <div class="icon icon-morning">🌅</div>
+      <h2>Morgunrútína</h2>
+    </div>
+
+    <div class="card">
+      <div class="time-item">
+        <div class="time-badge">~kl. 7:00</div>
+        <div class="content">
+          <strong>Vaknar 🌞</strong>
+          <p>Ef hann hefur <strong>EKKI</strong> fengið pela um nóttina → gefa honum <strong>FYRST pela</strong>, svo morgunmat</p>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time-badge">Morgunmatur</div>
+        <div class="content">
+          <strong>Morgunmatur 🥣</strong>
+          <p>Hafragrautur með olíu/smjöri, stappað með ávöxtum — eða annað sem dettur í hug. Hann er ekki kræsinn!</p>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time-badge">~10–11</div>
+        <div class="content">
+          <strong>Snarl 🍎</strong>
+          <p>Lítið snarl á milli morgunmatar og hádegismatar</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- LÚRAR -->
+    <div class="section-label">
+      <div class="icon icon-day">😴</div>
+      <h2>Lúrar</h2>
+    </div>
+
+    <div class="sleep-card">
+      <h3>😴 Lúraryfirlit</h3>
+      <div class="sleep-row">
+        <div class="sleep-col">
+          <span class="sleep-time">kl. 10–12</span>
+          <p>Fyrsti lúr<br>30 mín – 2 tímar</p>
+        </div>
+        <div class="sleep-col">
+          <span class="sleep-time">kl. 14–16</span>
+          <p>Annar lúr — <em>aðeins ef fyrsti var stuttur (u.þ.b. 1 klst. eða minna)</em></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight info">
+      <span>ℹ️</span>
+      <span>Fylgist með merktum þreytu — fer eftir þreytu hvenær hann þarfnast annars lúrs</span>
+    </div>
+
+    <!-- MÁLTÍÐIR -->
+    <div class="section-label">
+      <div class="icon icon-meal">🍽️</div>
+      <h2>Máltíðir — 5x á dag</h2>
+    </div>
+
+    <div class="card">
+      <div class="meal-grid">
+        <div class="meal-chip">
+          <span class="meal-icon">🌅</span>
+          <span class="meal-name">Morgun&shy;matur ~7:00</span>
+        </div>
+        <div class="meal-chip">
+          <span class="meal-icon">🍎</span>
+          <span class="meal-name">Snarl ~10–11</span>
+        </div>
+        <div class="meal-chip">
+          <span class="meal-icon">☀️</span>
+          <span class="meal-name">Hádegis&shy;matur eftir lúr</span>
+        </div>
+        <div class="meal-chip">
+          <span class="meal-icon">🍌</span>
+          <span class="meal-name">Snarl ~16–17</span>
+        </div>
+        <div class="meal-chip">
+          <span class="meal-icon">🌙</span>
+          <span class="meal-name">Kvöld&shy;matur</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- KVÖLDRÚTÍNA -->
+    <div class="section-label">
+      <div class="icon icon-evening">🌙</div>
+      <h2>Kvöldrútína</h2>
+    </div>
+
+    <div class="card">
+      <div class="time-item">
+        <div class="time-badge">Kvöldmatur</div>
+        <div class="content">
+          <strong>Kvöldmatur 🍽️</strong>
+          <p>Gefið kvöldmat eins og vanalega</p>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time-badge">Eftir mat</div>
+        <div class="content">
+          <strong>Kvölddosinn 💊</strong>
+          <p>Gefa honum pela (kvölddosinn) eftir kvöldmat</p>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time-badge">Eftir pela</div>
+        <div class="content">
+          <strong>Tannbursti 🦷</strong>
+          <p>Tannbursta eftir pela</p>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time-badge">kl. 20:00</div>
+        <div class="content">
+          <strong>Háttinn 🛏️</strong>
+          <p>Leggja hann í háttinn um kl. 20:00</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NÓTT -->
+    <div class="section-label">
+      <div class="icon icon-night">🌛</div>
+      <h2>Ef hann vaknar á nóttunni</h2>
+    </div>
+
+    <div class="night-card">
+      <h3>🌛 Næturrútína</h3>
+
+      <div class="night-option first-try">
+        <span class="time-range">Alltaf fyrst</span>
+        <div class="recipe">Reyndu að leggja hann aftur niður án þess að gefa honum neitt</div>
+      </div>
+
+      <div class="night-option">
+        <span class="time-range">Ef hann kvartir — kl. 22:00–04:00</span>
+        <div class="recipe">
+          <strong>Pela ÁN Movicol</strong><br>
+          150 ml vatn + 5 skeiðar af mjólk
+          <span class="or">— eða —</span>
+          120 ml vatn + 4 skeiðar af mjólk
+        </div>
+      </div>
+
+      <div class="night-option">
+        <span class="time-range">Ef hann vaknar svangur — eftir kl. 05:00</span>
+        <div class="recipe">
+          <strong>Morgundosinn — pela MEÐ Movicol</strong><br>
+          180 ml vatn + 6 skeiðar + 1 Movicol poki
+        </div>
+      </div>
+
+      <div class="night-note">
+        📝 Ef hann fær morgundosinn eftir kl. 05:00 þarf hann <strong>ekki</strong> að fá pela aftur þegar hann vaknar rétt og rétt
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-card" style="margin-top: 24px;">
+      <div class="footer-emoji">💛</div>
+      <p>Ef eitthvað er óljóst — hringið bara!</p>
+      <a href="tel:+3546910498" style="display:inline-block; margin-top:10px; background:#2A7A4A; color:white; font-family:'Nunito',sans-serif; font-weight:800; font-size:1.1rem; padding:10px 24px; border-radius:50px; text-decoration:none; letter-spacing:0.5px;">📞 +354 691 0498</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
